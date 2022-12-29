@@ -1,0 +1,22 @@
+1.On which memory arrays are created in java?
+>  Memory is allocated in Heap are for the Array in Java. 
+In Java reference types are stored in the Heap area. 
+As arrays are also reference types, (they can be created using the “new” keyword) they are also stored in the Heap area.
+
+2.What Is an enhancement for Loop?
+> In Java, the for-each loop is used to iterate through elements of arrays and collections (like ArrayList). It is also known as the enhanced for loop.
+
+3.What Types of Loops Does Java Support?
+> Java has three types of loops i.e. the for loop, the while loop, and the do-while loop.
+
+4.What is an array in Java?
+> An array is a container object that holds a fixed number of values of a single type. The length of an array is established when the array is created. After creation, its length is fixed.
+
+5.What are the types of an array?
+> There are two types of arrays:
+       - One-Dimensional Arrays.
+       - Multi-Dimensional Arrays.
+
+6.Array dimensions cannot have a negative size.
+
+7.How to copy an array in Java?
