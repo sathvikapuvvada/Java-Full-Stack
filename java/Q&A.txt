@@ -20,3 +20,11 @@ As arrays are also reference types, (they can be created using the “new” key
 6.Array dimensions cannot have a negative size.
 
 7.How to copy an array in Java?
+> clone() creates a new array of the same size, but System.arraycopy() can be used to copy from a source range to a destination range. System.
+
+8.What is the default value of the array?
+> Java will assign the default value 0 to each element of the array in the case of an int array.
+
+9.What is an anonymous array that also gives an example?
+> An array in Java without any name is known as an anonymous array. It is an array just for creating and using instantly. Using an anonymous array, we can pass an array with user values without the referenced variable.
+
