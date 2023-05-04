@@ -1,0 +1,7 @@
+Imports CrystalDecisions.Shared
+Public Class opreport
+    Dim rep As New CrystalReport3
+    Private Sub opreport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CrystalReportViewer1.ReportSource = rep
+    End Sub
+End Class

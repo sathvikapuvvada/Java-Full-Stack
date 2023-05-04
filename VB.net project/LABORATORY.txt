@@ -1,0 +1,71 @@
+Imports System.Data.OleDb
+Public Class laboratory
+    Dim cn As New OleDbConnection("provider=msdaora;user id=lifecare;password=hospital")
+    Dim cmd As New OleDbCommand
+    Dim rdr As OleDbDataReader
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        cmd.CommandText = "insert into laboratory1 values(?,?,?,?,?,?,?,?,?,?,?,?)"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("tdate", DateTimePicker1.Value)
+        cmd.Parameters.AddWithValue("p_name", TextBox1.Text)
+        cmd.Parameters.AddWithValue("gender", TextBox2.Text)
+        cmd.Parameters.AddWithValue("mobile_no", TextBox3.Text)
+        cmd.Parameters.AddWithValue("sample_taken", TextBox4.Text)
+        cmd.Parameters.AddWithValue("physician", TextBox5.Text)
+        cmd.Parameters.AddWithValue("final_report", TextBox6.Text)
+        cmd.Parameters.AddWithValue("p_id", TextBox7.Text)
+        cmd.Parameters.AddWithValue("p_age", TextBox8.Text)
+        cmd.Parameters.AddWithValue("dob", DateTimePicker2.Value)
+        cmd.Parameters.AddWithValue("test_fee", TextBox9.Text)
+        cmd.Parameters.AddWithValue("date_collected", DateTimePicker3.Value)
+        cmd.ExecuteNonQuery()
+        MsgBox("Records Inserted")
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim s As String = InputBox("Enter p_id")
+        cmd.CommandText = "select * from laboratory1 where p_id=?"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("p_id", s)
+        rdr = cmd.ExecuteReader
+        If rdr.Read Then
+            DateTimePicker1.Value = rdr.Item("tdate")
+            TextBox1.Text = rdr.Item("p_name")
+            TextBox2.Text = rdr.Item("gender")
+            TextBox3.Text = rdr.Item("mobile_no")
+            TextBox4.Text = rdr.Item("sample_taken")
+            TextBox5.Text = rdr.Item("physician")
+            TextBox6.Text = rdr.Item("final_report")
+            TextBox7.Text = rdr.Item("p_id")
+            TextBox8.Text = rdr.Item("p_age")
+            DateTimePicker2.Value = rdr.Item("dob")
+            TextBox9.Text = rdr.Item("test_fee")
+            DateTimePicker3.Value = rdr.Item("date_collected")
+        Else
+            MsgBox("Record not found")
+End If
+        rdr.Close()
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+        TextBox8.Text = ""
+        TextBox9.Text = ""
+    End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Me.Hide()
+        HomePage.Show()
+    End Sub
+
+    Private Sub laboratory_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmd.Connection = cn
+        cn.Open()
+    End Sub
+End Class

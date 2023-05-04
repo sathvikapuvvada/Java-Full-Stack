@@ -1,0 +1,69 @@
+Imports System.Data.OleDb
+Public Class Doctor_PD
+Dim cn As New OleDbConnection("provider=msdaora;user id=lifecare;password=hospital")
+    Dim cmd As New OleDbCommand
+    Dim rdr As OleDbDataReader
+    Private Sub Doctor_PD_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmd.Connection = cn
+        cn.Open()
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        cmd.CommandText = "insert into doctor_pd1 values(?,?,?,?,?,?,?,?,?,?,?)"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("d_id", TextBox1.Text)
+        cmd.Parameters.AddWithValue("d_name", TextBox2.Text)
+        cmd.Parameters.AddWithValue("d_age", TextBox3.Text)
+        cmd.Parameters.AddWithValue("salary", TextBox4.Text)
+        cmd.Parameters.AddWithValue("gender", TextBox5.Text)
+        cmd.Parameters.AddWithValue("mail_id", TextBox6.Text)
+        cmd.Parameters.AddWithValue("mobile_no", TextBox7.Text)
+        cmd.Parameters.AddWithValue("date_of_join", DateTimePicker1.Value)
+        cmd.Parameters.AddWithValue("dob", DateTimePicker2.Value)
+        cmd.Parameters.AddWithValue("department", TextBox8.Text)
+        cmd.Parameters.AddWithValue("address", TextBox9.Text)
+        cmd.ExecuteNonQuery()
+        MsgBox("Records Inserted")
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim s As String = InputBox("Enter p_id")
+        cmd.CommandText = "select * from doctor_pd1 where d_id=?"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("d_id", s)
+        rdr = cmd.ExecuteReader
+        If rdr.Read Then
+            TextBox1.Text = rdr.Item("d_id")
+            TextBox2.Text = rdr.Item("d_name")
+            TextBox3.Text = rdr.Item("d_age")
+            TextBox4.Text = rdr.Item("salary")
+            TextBox5.Text = rdr.Item("gender")
+            TextBox6.Text = rdr.Item("mail_id")
+            TextBox7.Text = rdr.Item("mobile_no")
+            DateTimePicker1.Value = rdr.Item("date_of_join")
+            DateTimePicker2.Value = rdr.Item("dob")
+            TextBox8.Text = rdr.Item("department")
+            TextBox9.Text = rdr.Item("address")
+        Else
+            MsgBox("Record not found")
+        End If
+        rdr.Close()
+    End Sub
+Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+        TextBox8.Text = ""
+        TextBox9.Text = ""
+    End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Me.Hide()
+        HomePage.Show()
+    End Sub
+
+End Class

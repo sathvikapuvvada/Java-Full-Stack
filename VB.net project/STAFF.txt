@@ -1,0 +1,64 @@
+Imports System.Data.OleDb
+Public Class staff
+    Dim cn As New OleDbConnection("provider=msdaora;user id=lifecare;password=hospital")
+    Dim cmd As New OleDbCommand
+    Dim rdr As OleDbDataReader
+    Private Sub staff_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmd.Connection = cn
+        cn.Open()
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        cmd.CommandText = "insert into staff1 values(?,?,?,?,?,?,?,?,?)"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("name", TextBox1.Text)
+        cmd.Parameters.AddWithValue("mobile_no", TextBox2.Text)
+        cmd.Parameters.AddWithValue("gender", TextBox3.Text)
+        cmd.Parameters.AddWithValue("dob", DateTimePicker1.Value)
+        cmd.Parameters.AddWithValue("occupancy", TextBox4.Text)
+        cmd.Parameters.AddWithValue("id_no", TextBox5.Text)
+        cmd.Parameters.AddWithValue("marital_status", TextBox6.Text)
+        cmd.Parameters.AddWithValue("address", TextBox7.Text)
+        cmd.Parameters.AddWithValue("joining_date", DateTimePicker2.Value)
+        cmd.ExecuteNonQuery()
+MsgBox("Records Inserted")
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim s As String = InputBox("Enter id_no")
+        cmd.CommandText = "select * from staff1 where id_no=?"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("id_no", s)
+        rdr = cmd.ExecuteReader
+        If rdr.Read Then
+            TextBox1.Text = rdr.Item("name")
+            TextBox2.Text = rdr.Item("mobile_no")
+            TextBox3.Text = rdr.Item("gender")
+            DateTimePicker1.Value = rdr.Item("dob")
+            TextBox4.Text = rdr.Item("occupancy")
+            TextBox5.Text = rdr.Item("id_no")
+            TextBox6.Text = rdr.Item("marital_status")
+            TextBox7.Text = rdr.Item("address")
+            DateTimePicker2.Value = rdr.Item("joining_date")
+        Else
+            MsgBox("Record not found")
+        End If
+        rdr.Close()
+    End Sub
+
+  
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+    End Sub
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Me.Hide()
+        HomePage.Show()
+    End Sub
+End Class

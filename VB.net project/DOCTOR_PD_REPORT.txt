@@ -1,0 +1,7 @@
+Imports CrystalDecisions.Shared
+Public Class doctor_pdreport
+    Dim rep As New CrystalReport10
+    Private Sub doctor_pdreport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CrystalReportViewer1.ReportSource = rep
+    End Sub
+End Class

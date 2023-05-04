@@ -1,0 +1,70 @@
+Imports System.Data.OleDb
+Public Class InpatientBill
+    Dim cn As New OleDbConnection("provider=msdaora;user id=lifecare;password=hospital")
+    Dim cmd As New OleDbCommand
+    Dim rdr As OleDbDataReader
+    Private Sub InpatientBill_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmd.Connection = cn
+        cn.Open()
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        cmd.CommandText = "insert into inpatientbill1 values(?,?,?,?,?,?,?,?,?,?,?,?)"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("tdate", DateTimePicker1.Value)
+        cmd.Parameters.AddWithValue("p_name", TextBox1.Text)
+        cmd.Parameters.AddWithValue("room_rent", TextBox2.Text)
+cmd.Parameters.AddWithValue("pharmacy", TextBox3.Text)
+        cmd.Parameters.AddWithValue("gender", TextBox4.Text)
+        cmd.Parameters.AddWithValue("date_of_addmission", DateTimePicker2.Value)
+        cmd.Parameters.AddWithValue("date_of_discharge", DateTimePicker3.Value)
+        cmd.Parameters.AddWithValue("net_charge", TextBox5.Text)
+        cmd.Parameters.AddWithValue("p_id", TextBox6.Text)
+        cmd.Parameters.AddWithValue("lab_fee", TextBox7.Text)
+        cmd.Parameters.AddWithValue("mobile_no", TextBox8.Text)
+        cmd.Parameters.AddWithValue("ref_doctor", TextBox9.Text)
+        cmd.ExecuteNonQuery()
+        MsgBox("Records Inserted")
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim s As String = InputBox("Enter p_id")
+        cmd.CommandText = "select * from inpatientbill1 where p_id=?"
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("p_id", s)
+        rdr = cmd.ExecuteReader
+        If rdr.Read Then
+            DateTimePicker1.Value = rdr.Item("tdate")
+            TextBox1.Text = rdr.Item("p_name")
+            TextBox2.Text = rdr.Item("room_rent")
+            TextBox3.Text = rdr.Item("pharmacy")
+            TextBox4.Text = rdr.Item("gender")
+            DateTimePicker2 = rdr.Item("date_of_addmission")
+            DateTimePicker3 = rdr.Item("date_of_discharge")
+            TextBox5.Text = rdr.Item("net_charge")
+            TextBox6.Text = rdr.Item("p_id")
+            TextBox7.Text = rdr.Item("lab_fee")
+            TextBox8.Text = rdr.Item("mobile_no") 
+TextBox9.Text = rdr.Item("ref_doctor")
+        Else
+            MsgBox("Record not found")
+        End If
+        rdr.Close()
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+        TextBox8.Text = ""
+        TextBox9.Text = ""
+    End Sub
+ Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Me.Hide()
+        HomePage.Show()
+    End Sub
+End Class

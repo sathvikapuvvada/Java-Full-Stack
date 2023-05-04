@@ -1,0 +1,7 @@
+Imports CrystalDecisions.Shared
+Public Class laboratorybill
+    Dim rep As New CrystalReport8
+    Private Sub laboratorybill_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CrystalReportViewer1.ReportSource = rep
+    End Sub
+End Class

@@ -1,0 +1,56 @@
+Public Class HomePage
+    Private Sub LOGINToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LOGINToolStripMenuItem.Click
+        Form1.MdiParent = Me
+        Form1.WindowState = FormWindowState.Maximized
+        Form1.Show()
+    End Sub
+
+    Private Sub HomePage_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.WindowState = FormWindowState.Maximized
+        Me.OUTPATIENTBILLToolStripMenuItem.Enabled = False
+        Me.PHARMACYToolStripMenuItem.Enabled = False
+        Me.DOCTORPDToolStripMenuItem.Enabled = False
+        Me.STAFFToolStripMenuItem.Enabled = False
+        Me.PHARMACYToolStripMenuItem.Enabled = False
+        Me.REPORTSToolStripMenuItem.Enabled = False
+    End Sub
+
+    Private Sub APPOINTMENTToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles APPOINTMENTToolStripMenuItem.Click
+        OP.MdiParent = Me
+        OP.WindowState = FormWindowState.Maximized
+        OP.Show()
+    End Sub
+
+    Private Sub OUTPATIENTADDToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OUTPATIENTADDToolStripMenuItem.Click
+        inpatient.MdiParent = Me
+        inpatient.WindowState = FormWindowState.Maximized
+        inpatient.Show()
+    End Sub
+
+    Private Sub DToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DToolStripMenuItem.Click
+        laboratory.MdiParent = Me
+        laboratory.WindowState = FormWindowState.Maximized
+        laboratory.Show()
+    End Sub
+Private Sub PHARMACYToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PHARMACYToolStripMenuItem.Click
+        pharmacy.MdiParent = Me
+        pharmacy.WindowState = FormWindowState.Maximized
+        pharmacy.Show()
+    End Sub
+
+    Private Sub STAFFToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles STAFFToolStripMenuItem.Click
+        staff.MdiParent = Me
+        staff.WindowState = FormWindowState.Maximized
+        staff.Show()
+    End Sub
+
+    Private Sub DOCTORPDToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DOCTORPDToolStripMenuItem.Click
+        Doctor_PD.MdiParent = Me
+        Doctor_PD.WindowState = FormWindowState.Maximized
+        Doctor_PD.Show()
+    End Sub
+
+    Private Sub EXITToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EXITToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+End Class
